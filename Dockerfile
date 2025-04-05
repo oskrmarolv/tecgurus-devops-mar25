@@ -28,6 +28,8 @@ RUN mkdir -p /container/app
 # COPY      - trabaja con rutas relativas y locales 
 # ADD       - trabaja con rutas absolutas y distintos recursos
 #
+# Agregan archivos de la imagen
+# 
 #   COPY origen_local destino_imagen
 #   ADD origine destino_imagen
 
@@ -36,10 +38,18 @@ RUN apt update
 RUN apt install -y nodejs
 
 
+# EXPOSE
+#
+#   EXPOSE port port-port
 
-# CMD
+EXPOSE 80 443 3000-3004
+
+
+# CMD           - permite realiar sobre-escritura de parametros
+# ENTRYPOINT    - no admite valores adicionales
 #
 # define el comando que será lanzado como 
 # PRIMER comando una vez iniciado el contenedor
 
-CMD [ "/bin/bash" ]
+# CMD [ "/bin/bash" ]       # /bin/bash tecgurus
+ENTRYPOINT [ "node", "/container/app/bin/www" ]

@@ -21,8 +21,20 @@ Repositorio para curso "DevOps desde Cero" Marzo 2025
 
 ```
 # lanzar un contenedor
-...$ docker run --name <container_name> <docker_imager> 
-...$ docker run -it --name <container_name> <docker_imager> 
+...$ docker run --name <container_name> <docker_imager>
+
+# contenedor con interfaz interactiva (-it) 
+...$ docker run -it --name <container_name> <docker_imager>
+
+# conexion de puertos (-p)
+...$ docker run -it --name <container_name> \
+      -p <real_port>:<logic_port> \ 
+      <docker_imager> 
+
+# montaje simple de un volumen
+...$ docker run -it --name <container_name> \
+      -v <orig_local_path>:<dest_container_path> \ 
+      <docker_imager>
 ```
 
 ```
