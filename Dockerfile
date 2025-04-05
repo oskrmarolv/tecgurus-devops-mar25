@@ -24,8 +24,16 @@ FROM ubuntu:24.04
 #   RUN [ comando ]
 
 RUN mkdir -p /container/app
-# RUN apt update
-# RUN apt install -y nodejs
+
+# COPY      - trabaja con rutas relativas y locales 
+# ADD       - trabaja con rutas absolutas y distintos recursos
+#
+#   COPY origen_local destino_imagen
+#   ADD origine destino_imagen
+
+COPY ./files/sources.list /etc/apt/sources.list
+RUN apt update
+RUN apt install -y nodejs
 
 
 
