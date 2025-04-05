@@ -25,6 +25,13 @@ FROM ubuntu:24.04
 
 RUN mkdir -p /container/app
 
+# WORKDIR
+# 
+#   WORKDIR <container_path>
+WORKDIR /container/app
+
+
+
 # COPY      - trabaja con rutas relativas y locales 
 # ADD       - trabaja con rutas absolutas y distintos recursos
 #
@@ -36,6 +43,13 @@ RUN mkdir -p /container/app
 COPY ./files/sources.list /etc/apt/sources.list
 RUN apt update
 RUN apt install -y nodejs
+
+
+# ENV
+#
+#   ENV key value
+
+# ENV NODE_ENV development
 
 
 # EXPOSE

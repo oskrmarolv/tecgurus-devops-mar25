@@ -9,7 +9,11 @@ Repositorio para curso "DevOps desde Cero" Marzo 2025
 
 * FROM
 * RUN
+* COPY
+* ENV
+* EXPOSE
 * CMD
+* ENTRYPOINT
 
 
 ### Docker CLI
@@ -37,6 +41,10 @@ Repositorio para curso "DevOps desde Cero" Marzo 2025
 # montaje simple de un volumen
 ...$ docker run -it --name <container_name> \
       -v <orig_local_path>:<dest_container_path> \ 
+      <docker_imager>
+
+...$ docker run -d --name <container_name> \
+      --env <clave>=<valor> \
       <docker_imager>
 ```
 
