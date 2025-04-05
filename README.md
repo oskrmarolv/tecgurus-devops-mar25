@@ -26,6 +26,9 @@ Repositorio para curso "DevOps desde Cero" Marzo 2025
 # contenedor con interfaz interactiva (-it) 
 ...$ docker run -it --name <container_name> <docker_imager>
 
+# contenedor con salida en 2do plano (-) 
+...$ docker run -d --name <container_name> <docker_imager>
+
 # conexion de puertos (-p)
 ...$ docker run -it --name <container_name> \
       -p <real_port>:<logic_port> \ 
