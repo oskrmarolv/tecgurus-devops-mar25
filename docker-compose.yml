@@ -10,15 +10,19 @@ version: '3.8'
 
 services:
   capp:
-    container_name: tecgurus_app
+    # build: .
     image: tecgurus/devops:ejemplo-001
-    resources:
-      cpu: 1
-      memory: 1024K 
-    port:
+    container_name: tecgurus_app
+    deploy: 
+      resources:
+        limits:   
+          cpus: "1"
+          memory: 1024M
+    ports:
       - "3000:3000"
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
+      - PORT=3000
     volumes:
       - /home/guest/Projects/DevOps_desde_cero-Mar2025/exercises/devops_app_repo:/container/app
     networks:
@@ -27,17 +31,17 @@ services:
   cdatabase:
     container_name: tecgurus_database
     image: mongo:latest
-    port:
+    ports:
       - "27017:27017"
     volumes:
-      - /home/guest/Projects/DevOps_desde_cero-Mar2025/exercises/mongodb:/data/db
+      - /home/guest/Projects/DevOps_desde_cero-Mar2025/exercises/devops_reources/mongodb:/data/db
     networks:
       - tecgurus
 
   cmemcach:
     container_name: tecgurus_memcach
     image: redis:latest
-    port:
+    ports:
       - "6379:6379"
     networks:
       - tecgurus
