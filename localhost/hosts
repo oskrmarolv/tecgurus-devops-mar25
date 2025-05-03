@@ -1,0 +1,9 @@
+[local]
+127.0.0.1
+
+[local:vars]
+ansible_connection=local
+
+
+[db]
+44.199.243.21

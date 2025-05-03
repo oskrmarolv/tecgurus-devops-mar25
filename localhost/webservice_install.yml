@@ -1,0 +1,35 @@
+# Instalacion de un servicio NGINX en un entorno (host) local
+#
+# 
+
+- name: Instalacion de servico NGINX en entorno local
+  hosts: local            # bloque en el archivo inventario sobre el cual se ejecutaran las tareas
+  become: yes             # definicion de permisos "sudo"
+  tasks:
+    - name: Update a repositorio con apt
+      apt:                                    # MODULE !!
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+
+    - name: Update a repositorio con yum
+      yum:
+        update_cache: yes
+      when: ansible_os_family == "RedHat"
+
+    - name: Instalacion del servicio NGINX
+      apt:
+        name: nginx
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Levantar el servicio NGINX
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+      ignore_errors: yes
+
+# - name: Instalacion de servico DATABASE
+#   hosts: db
+#   ...

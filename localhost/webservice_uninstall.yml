@@ -1,0 +1,21 @@
+# Instalacion de un servicio NGINX en un entorno (host) local
+#
+# 
+
+- name: Desinstalacion de servico NGINX en entorno local
+  hosts: local            # bloque en el archivo inventario sobre el cual se ejecutaran las tareas
+  become: yes             # definicion de permisos "sudo"
+  tasks:
+    - name: Detener el servicio NGINX
+      service:                                    # MODULE !!
+        name: nginx
+        state: stopped
+        enabled: no
+      ignore_errors: yes
+
+    - name: Desinstalacion del servicio NGINX
+      apt:
+        name: nginx
+        state: absent
+        purge: true
+      when: ansible_os_family == "Debian"
