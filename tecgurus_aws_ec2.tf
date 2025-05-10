@@ -20,8 +20,13 @@ provider "aws" {
 # definicion del modulo
 # resource "module" "name_rsc" { ... }
 #
+
+# resource "aws_key_pair" "tecgurus_key" {
+#  key_name    = "key-tecgurus"
+# }
+
 resource "aws_instance" "tecgurus_ec2" {
-  ami             = ""
-  instance_type   = ""
-  key_name        = ""
+  ami             = "ami-03f66a42faa59a9f1"
+  instance_type   = "t3.large"
+  key_name        = "testing-labs-001"
 }
