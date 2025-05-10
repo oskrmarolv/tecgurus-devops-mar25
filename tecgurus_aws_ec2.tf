@@ -26,7 +26,17 @@ provider "aws" {
 # }
 
 resource "aws_instance" "tecgurus_ec2" {
-  ami             = "ami-03f66a42faa59a9f1"
+  ami             = "ami-08252046d3814a994"
   instance_type   = "t3.large"
   key_name        = "testing-labs-001"
+
+  tags = {
+    Name        = "tecgurus-stage-app"
+    Environment = "staging"
+  }
+}
+
+output "public_ip" {
+  value       = aws_instance.tecgurus_ec2.public_ip
+  description = "IP publica de la instancia"
 }
