@@ -1,0 +1,13 @@
+# Despliegue de servicio
+#   * nginx 
+#   * nodejs (18.x.x)
+#
+
+
+- name: "Deshabilitando -tecgurus_app-"
+  hosts: tecgurus-stage-app
+  become: yes
+  tasks:
+    - name: "Desinstalacion de nginx"
+
+    - name: "Desinstalacion de nodejs"

@@ -1,0 +1,29 @@
+# Despliegue de servicio
+#   * nginx 
+#   * nodejs (18.x.x)
+#
+
+
+- name: "Habilitando -tecgurus_app-"
+  hosts: tecgurus-stage-app
+  become: yes
+  tasks:
+    - name: "Actualizacion de repositorio"
+      apt:
+        update_cache: yes
+
+    - name: "Instalacion de nginx"
+      apt:
+        name: nginx
+        state: present
+
+    - name: "Instalacion de nodejs"
+      apt:
+        name: nodejs
+        state: present
+
+    - name: "Lanzando servicio nginx.daemon"
+      service: 
+        name: nginx
+        state: started
+        enabled: yes
