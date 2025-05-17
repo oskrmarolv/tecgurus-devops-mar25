@@ -1,0 +1,50 @@
+# docker-compose
+#   crear un contenedor con la app
+#   crear un contenedor con un servicio MongoDB (database)
+#   crear un contenedor con un servicio Redis (memcach)
+#
+# app debe poder conectarse con database y memcach
+
+
+version: '3.8'
+
+services:
+
+  test_database:
+    image: mongo:latest
+    networks:
+      - tecgurus
+
+  test_memcach:
+    image: redis:latest
+    networks:
+      - tecgurus
+
+  test_app:
+    image: tecgurus/devops:testing
+    deploy:
+      replicas: 2
+      resources:
+        limits:   
+          cpus: "1"
+          memory: 1024M
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=stage
+      - PORT=3000
+      - COOKIE_SECRET=bbf6ab698ab80c96548c42381ef310af17959ef3944d0382ab480eacad97da3b
+      - DATABASE_REDIS_HOST=test_memcach
+      - DATABASE_REDIS_PORT=6379
+      - DATABASE_MONGODB_HOST=test_database
+      - DATABASE_MONGODB_PORT=27017
+    volumes:
+      - <path_devops_app>:/container/app
+    networks:
+      - tecgurus
+
+
+networks:
+
+  tecgurus:
+
